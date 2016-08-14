@@ -8,22 +8,29 @@ $(function() {
             if (target.length) {
                 $('html, body').animate({
                     scrollTop: target.offset().top
-                }, 1000);
+                }, 500);
                 return false;
             }
         }
     });
 
-    // Barba
-    var Homepage = Barba.BaseView.extend({
-        namespace: 'homepage',
-        onEnter: function() {
-            $('.navbar').addClass('navbar-transparent navbar-absolute');
-        },
-        onLeave: function() {
+    // Navigation
+    $('[data-target="checkout"]').click(function() {
+        var product = $(this).attr('data-product');
+        localStorage.setItem('product', product);
+        $('.wrapper').load("checkout-shipping.html", function() {
             $('.navbar').removeClass('navbar-transparent navbar-absolute');
-        }
+            $('#product-name').text(product);
+            $('[name="product"]').val(product);
+            $('#container-product-description').removeClass('hidden');
+        });
     });
-    Homepage.init();
-    Barba.Pjax.start();
+
+    // Form submit
+    $(document).on("submit", "#form-checkout-shipping", function() {
+        $.post("checkout-shipping.php", $("#form-checkout-shipping").serialize(), function(data) {
+            console.log(data);
+        });
+        return false;
+    });
 });
