@@ -1,0 +1,101 @@
+<div class="main">
+    <div class="container">
+        <div class="row hidden" id="container-product-description">
+            <p>You are buying product <span id="product-name"></span>.</p>
+        </div>
+        <form class="form-horizontal" id="form-checkout-payment">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h3>Shipping Address</h3>
+                    <p>
+                        <span data-binding="input-shipping-firstname"></span> <span data-binding="input-shipping-lastname"></span><br>
+                        <span data-binding="input-shipping-streetaddress"></span> <span data-binding="input-shipping-addressextension"></span><br>
+                        <span data-binding="input-shipping-city"></span> <span data-binding="input-shipping-zipcode"></span><br>
+                        <span data-binding="input-shipping-country"></span>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <h3>Billing Address</h3>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="input-billing-address" id="input-billing-address-same" value="same" checked> Same as shipping address
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="input-billing-address" id="input-billing-address-different" value="different"> Use a different shipping address
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <fieldset id="billing-address-fields" disabled>
+                    <div class="form-group">
+                        <label for="input-billing-streetaddress" class="col-sm-2 control-label">Street Address</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="input-billing-streetaddress" placeholder="Street Address" name="streetaddress" data-bound="true" data-binding="input-shipping-streetaddress">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-billing-addressextension" class="col-sm-2 control-label">Apt/Floor/etc.</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="input-billing-addressextension" placeholder="Apt/Floor/etc." name="addressextension" data-bound="true" data-binding="input-shipping-addressextension">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-billing-city" class="col-sm-2 control-label">City</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="input-billing-city" placeholder="City" name="city" data-bound="true" data-binding="input-shipping-city">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-billing-zipcode" class="col-sm-2 control-label">Zip Code</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="input-billing-zipcode" placeholder="Zip Code" name="zipcode" data-bound="true" data-binding="input-shipping-zipcode">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-billing-country" class="col-sm-2 control-label">Country</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="input-billing-country" placeholder="Country" name="country" data-bound="true" data-binding="input-shipping-country">
+                        </div>
+                    </div>
+<!--                     <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="btn btn-default">Confirm payment</button>
+                        </div>
+                    </div> -->
+                </fieldset>
+            </div>
+        </form>
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" id="form-paypal">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="XTV9YWYLX5SL8" id="input-paypalbutton">
+            <input type="hidden" name="custom" value="" id="input-paypalcustom">
+            <!-- <input type="hidden" name="return" value="http://appricorn.eu/balibox/checkout-result.html"> -->
+
+            <!-- Enable override of buyers's address stored with PayPal . -->
+            <input type="hidden" name="address_override" value="1">
+            <!-- Set variables that override the address stored with PayPal. -->
+            <input type="hidden" name="first_name" value="" data-binding="input-shipping-firstname">
+            <input type="hidden" name="last_name" value="" data-binding="input-shipping-lastname">
+            <input type="hidden" name="address1" value="" data-binding="input-shipping-streetaddress">
+            <input type="hidden" name="address2" value="" data-binding="input-shipping-addressextension">
+            <input type="hidden" name="city" value="" data-binding="input-shipping-city">
+            <input type="hidden" name="zip" value="" data-binding="input-shipping-zipcode">
+            <input type="hidden" name="country" value="" data-binding="input-shipping-country">
+
+            <!-- <input type="image" src="https://www.sandbox.paypal.com/en_US/BE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"> -->
+        </form>
+
+        <!-- Pay button -->
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <button class="btn btn-default" id="btn-paypal">Pay with PayPal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
