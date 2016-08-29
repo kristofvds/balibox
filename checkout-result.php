@@ -118,6 +118,7 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 		// Database updated. Show PayPal response and success message
 		echo '<script>console.log(' . json_encode($response) . ');</script>';
 		echo $HTML;
+		unset($_SESSION['orderID']);
 	}
 	else
 	{
@@ -167,51 +168,6 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 		echo '<script>console.log("' . $status . '");</script>';
 		echo '<script>console.log("' . $response . '");</script>';
 	}
-}
-else if (isset($_GET['cancel']))
-{
-	// Payment canceled
-	echo '<script>console.log("Payment canceled");</script>';
-
-	// Update status in database
-	$link = mysqli_connect("10.3.0.67", "cgsowtqd_balibox", "balibox", "cgsowtqd_balibox");
-
-	/* check connection */
-	if (mysqli_connect_errno()) {
-		header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
-	    printf("Connect failed: %s\n", mysqli_connect_error());
-	    exit();
-	}
-
-	/* update database record */
-	$query = "UPDATE orders
-		SET `status` = '4',
-			`modified_dt` = NOW()
-		WHERE id = " . $_SESSION['orderID'];
-
-	echo '<script>console.log("Executing query");</script>';
-
-	$result = mysqli_query($link, $query);
-
-	if ($result) {
-		// Echo HTML
-		echo '<script>console.log("Record updated");</script>';
-	} else {
-		echo '<script>console.log('.mysqli_error($link).');</script>';
-	}
-
-	mysqli_close($link);
-
-	// Database updated. Show cancelation message
-	echo '
-		<div class="main">
-		    <div class="container">
-		        <div class="row">
-		            <p>Your order has been canceled.</p>
-		        </div>
-		    </div>
-		</div>
-	';
 }
 
 ?>

@@ -8,6 +8,13 @@
             </div>
         </div>
 
+        <div class="row hidden" id="container-payment-canceled">
+            <div class="col-xs-12">
+                <br>
+                <p>Your payment was canceled.</p>
+            </div>
+        </div>
+
         <form class="form-horizontal" id="form-checkout-payment">
             <div class="row">
                 <div class="col-sm-6">
@@ -80,8 +87,11 @@
 
         <!-- Pay button -->
         <div class="row">
-            <div class="col-sm-offset-6 col-sm-6">
-                <button class="btn btn-default pull-right" id="btn-paypal">Pay with PayPal</button>
+            <div class="col-sm-6">
+                <a class="btn btn-default btn-back">Back</a>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-primary pull-right" id="btn-paypal">Pay with PayPal</button>
             </div>
         </div>
     </div>

@@ -1,12 +1,9 @@
- ☐ Add back button throughout checkout process
- ☐ Stay on same record when changing shipping details
- ☐ Keep checkbox values on going back to shipping (change iso blur?)
- ☐ Improve design (break up in tasks)
+ ☐ Improve design of home page
  ☐ Add checkout product information
- ☐ Improve copy
- ☐ Come back to checkout-payment page after PayPal cancelation (edit buttons)
+ ☐ Improve copy (break up in tasks)
  ☐ Add front-end form validation
  ☐ On navigation: keep other pages in memory (prevent AJAX load)
+ ☐ Keep checkbox values on going back to shipping (change iso blur?)
  ☐ Make sure navbar links work on all pages
  ☐ Show spinner in checkout buttons on navigation
  ☐ Add error handling: eg. on POST
@@ -27,11 +24,14 @@ Create 3 buttons
   3: $84: FDTLMN8VL3JNQ
   6: $150: QPXDMB858CEE4
   Return address
-    http://appricorn.eu/balibox/?p=checkout-result&cancel
+    http://appricorn.eu/balibox/?p=checkout-payment&status=payment-canceled
     http://appricorn.eu/balibox/?p=checkout-result&done
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Come back to checkout-payment page after PayPal cancelation (edit buttons) @done (16-08-29 18:11)
+ ✔ Stay on same record when changing shipping details @done (16-08-29 17:05)
+ ✔ Add back button throughout checkout process @done (16-08-29 16:53)
  ✔ Modify form layout: payment @done (16-08-29 14:51)
  ✔ Modify form layout: shipping @done (16-08-29 12:18)
  ✔ Init page on popstate @done (16-08-28 18:10)

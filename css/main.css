@@ -165,7 +165,11 @@ section:nth-child(even) {
 .form-horizontal .radio {
     margin-bottom: 0;
 }
-.btn.btn-default, .btn.btn-default:hover {
+.btn.btn-primary,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary:active:focus {
     background-color: #e91e63;
 }
 

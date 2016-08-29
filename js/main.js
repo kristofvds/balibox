@@ -23,6 +23,10 @@ $(function() {
         });
     });
 
+    $(document).on('click', '.btn-back', function() {
+        window.history.back();
+    });
+
     // Form submit
     $(document).on("submit", "#form-checkout-shipping", function() {
         $.post("checkout-shipping.php", $("#form-checkout-shipping").serialize()).done(function(data) {
@@ -65,14 +69,22 @@ $(function() {
 
     initCheckoutShipping = function() {
         initCheckout();
-        history.pushState(null, null, '?p=home');
-        history.pushState(null, null, '?p=checkout-shipping');
+        var getParams = getSearchParameters();
+        if (getParams.p !== 'checkout-payment') {
+            history.pushState(null, null, '?p=home');
+            history.pushState(null, null, '?p=checkout-shipping');
+        }
         initFieldBindings($("#form-checkout-shipping"));
     };
 
     initCheckoutPayment = function() {
         initCheckout();
-        history.pushState(null, null, '?p=checkout-payment');
+
+        var getParams = getSearchParameters();
+        if (getParams.p !== 'checkout-payment') {
+            history.pushState(null, null, '?p=checkout-payment');
+        }
+
         initFieldBindings($("#form-checkout-payment").add("#form-paypal"));
 
         var product = localStorage.getItem('product');
@@ -94,6 +106,10 @@ $(function() {
                 $billingAddressFields.removeClass("hidden");
             }
         });
+
+        if (getParams.status === 'payment-canceled') {
+            $('#container-payment-canceled').removeClass('hidden');
+        }
     };
 
     // Field binding
