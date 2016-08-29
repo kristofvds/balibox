@@ -1,17 +1,20 @@
- ☐ Build index.php with page inclusions based on GET params
-     JS page initialization
- ☐ Improve design
+ ☐ Add back button throughout checkout process
+ ☐ Stay on same record when changing shipping details
+ ☐ Keep checkbox values on going back to shipping (change iso blur?)
+ ☐ Improve design (break up in tasks)
  ☐ Add checkout product information
  ☐ Improve copy
- ☐ Add back button throughout checkout process
- ☐ Show spinner in checkout buttons
+ ☐ Come back to checkout-payment page after PayPal cancelation (edit buttons)
+ ☐ Add front-end form validation
+ ☐ On navigation: keep other pages in memory (prevent AJAX load)
+ ☐ Make sure navbar links work on all pages
+ ☐ Show spinner in checkout buttons on navigation
  ☐ Add error handling: eg. on POST
- ☐ Alter pushstate on navigation
- ☐ Rebuild page on hard navigation (eg. payment cancelation)
  ☐ Add server side validation
  ☐ Setup live PayPal (see below)
  ☐ Implement PayPal IPN as a backup: http://www.geekality.net/?p=1420
  ☐ Modify index.php page inclusions via GET params to inclusions via routing (see bookmark)
+ ☐ Optimize banner image
 
 
 PayPal sandbox:
@@ -24,11 +27,19 @@ Create 3 buttons
   3: $84: FDTLMN8VL3JNQ
   6: $150: QPXDMB858CEE4
   Return address
-    http://appricorn.eu/balibox/checkout-result.php?cancel
-    http://appricorn.eu/balibox/checkout-result.php?done
+    http://appricorn.eu/balibox/?p=checkout-result&cancel
+    http://appricorn.eu/balibox/?p=checkout-result&done
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Modify form layout: payment @done (16-08-29 14:51)
+ ✔ Modify form layout: shipping @done (16-08-29 12:18)
+ ✔ Init page on popstate @done (16-08-28 18:10)
+ ✔ Alter pushstate on navigation @done (16-08-28 18:10)
+ ✔ Test hard load of checkout-result after PayPal @done (16-08-28 16:02)
+ ✔ Modify PayPal buttons to navigate to index.php with GET params @done (16-08-28 16:00)
+ ✔ Execute JS page initialization on hard load to specific page @done (16-08-28 15:45)
+ ✔ Build index.php with page inclusions based on GET params @done (16-08-28 10:12)
  ✔ Copy shipping to billing when indicated as such by radiobutton @done (16-08-27 21:56)
  ✔ Save billing address using AJAX POST @done (16-08-27 17:00)
  ✔ Test saving of created_dt, modified_dt, payment_dt @done (16-08-27 16:28)

@@ -84,6 +84,15 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    background-color: #FFF;
+}
+
+.navbar {
+    margin: 0;
+    background-color: #e91e63;
+}
+
 .header {
     /*background-image: url("../img/banner.jpg");*/
 }
@@ -115,6 +124,49 @@ section:nth-child(even) {
     vertical-align: super;
     font-size: .5em;
     font-weight: normal;
+}
+
+/* Form */
+.form-horizontal .form-group {
+    margin: 0;
+}
+.form-control, .form-group .form-control {
+    border: 1px solid #CCC;
+    border-radius: 2px;
+    padding: 6px 12px;
+}
+.form-group label.control-label {
+    font-size: .9em;
+    font-weight: 800;
+}
+.form-group.is-focused .form-control {
+    background-image: linear-gradient(#e91e63, #e91e63), linear-gradient(#D2D2D2, #D2D2D2)
+}
+.form-group.is-focused label, .form-group.is-focused label.control-label {
+    color: #e91e63;
+}
+.checkbox input[type=checkbox]:checked + .checkbox-material .check {
+    background: #e91e63;
+    border-color: #e91e63;
+    border-radius: 2px;
+}
+.radio input[type=radio]:checked ~ .check {
+    background-color: #e91e63;
+}
+.radio input[type=radio]:checked ~ .circle {
+    border-color: #e91e63;
+}
+.radio label {
+    padding-left: 25px;
+}
+.radio label span {
+    left: 0;
+}
+.form-horizontal .radio {
+    margin-bottom: 0;
+}
+.btn.btn-default, .btn.btn-default:hover {
+    background-color: #e91e63;
 }
 
 
