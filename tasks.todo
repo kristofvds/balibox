@@ -1,8 +1,9 @@
 Bali Box:
- ☐ Improve design of home page
-   http://tympanus.net/Blueprints/OnScrollEffectLayout/
-   http://tympanus.net/Development/SectionSeparators/
- ☐ Add animated checkout section on homepage
+ ☐ Home page: choose 1 section separator, use waves for top or bottom
+ ☐ Home page: add subscription button
+ ☐ Home page: add animated checkout section
+ ☐ Home page: add social icons
+ ☐ Home page: add logo
  ☐ Add checkout product information
  ☐ Improve copy (break up in tasks)
  ☐ Add front-end form validation
@@ -71,6 +72,8 @@ EPP code: :heaHhC6VO
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Home page design: http://tympanus.net/Blueprints/OnScrollEffectLayout/ @done (16-09-02 14:44) @project(Bali Box)
+ ✔ Home page design: http://tympanus.net/Development/SectionSeparators/ @done (16-09-02 14:44) @project(Bali Box)
  ✔ Come back to checkout-payment page after PayPal cancelation (edit buttons) @done (16-08-29 18:11)
  ✔ Stay on same record when changing shipping details @done (16-08-29 17:05)
  ✔ Add back button throughout checkout process @done (16-08-29 16:53)

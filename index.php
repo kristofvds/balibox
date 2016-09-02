@@ -22,12 +22,12 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/material-kit.css" rel="stylesheet"/>
         <link rel="stylesheet" href="css/main.css">
-        <!-- <script src="js/vendor/modernizr-2.8.3.min.js"></script> -->
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
+        <!--
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
                         <span class="sr-only">Toggle navigation</span>
@@ -74,6 +74,7 @@
                 </div>
             </div>
         </nav>
+        -->
 
         <div class="wrapper">
         <?php
@@ -87,6 +88,10 @@
                 switch ($page) {
                     case 'home':
                         include 'home.html';
+                        break;
+
+                    case 'home-dev':
+                        include 'home-dev.html';
                         break;
                         
                     case 'checkout-shipping':
