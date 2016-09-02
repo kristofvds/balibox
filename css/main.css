@@ -95,6 +95,7 @@ body {
 
 .header {
     /*background-image: url("../img/banner.jpg");*/
+    height: 100vh;
 }
 
 .header .container {
