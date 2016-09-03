@@ -1,15 +1,3 @@
-/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
-
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
 html {
     color: #222;
     font-size: 1em;
@@ -86,49 +74,49 @@ textarea {
 
 body {
     background-color: #FFF;
+    overflow-x: hidden;
 }
 
+/*
 .navbar {
     margin: 0;
     background-color: #e91e63;
 }
+*/
 
 header {
     /*background-image: url("../img/banner.jpg");*/
     /*height: 100vh;*/
-    padding: 0 3em;
+    padding: .5em 13em 1.5em 3em;
     font-size: 2em;
 }
-/*
-.header .container {
-    color: #FFFFFF;
-    padding-top: 25vh;
-    padding-bottom: 15vh;
+
+header .btn-subscribe {
+    position: absolute;
+    top: 1.5em;
+    right: 3em;
+    font-size: 1em;
 }
 
-.header .container .title {
-    color: #FFFFFF;
-}*/
+@media screen and (max-width: 64em) {
+    header {
+        padding-right: 3em;
+    }
+    header .btn-subscribe {
+        position: static;
+    }
+}
 
 section {
-    padding: 5em 0;
+    padding: 0 0 8em;
 }
 
 section.color {
-    color: #FFF;
-    background-color: #2072a7;
-    padding: 0 0 10em;
+    background-color: #e5f8e5;
 }
 
-.pricing-price {
+section .btn-subscribe {
     font-size: 2em;
-    font-weight: bold;
-}
-
-.pricing-currency {
-    vertical-align: super;
-    font-size: .5em;
-    font-weight: normal;
 }
 
 /* Form */
@@ -175,7 +163,7 @@ section.color {
 .btn.btn-primary:focus,
 .btn.btn-primary:active,
 .btn.btn-primary:active:focus {
-    background-color: #e91e63;
+    background-color: #67d967;
 }
 
 
@@ -186,49 +174,8 @@ section.color {
 /*
  * Hide visually and from screen readers
  */
-
 .hidden {
     display: none !important;
-}
-
-/*
- * Hide only visually, but have it available for screen readers:
- * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- */
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-/*
- * Extends the .visuallyhidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
-
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
 }
 
 /*
@@ -253,31 +200,12 @@ section.color {
     clear: both;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-
 
 /* ==========================================================================
    http://tympanus.net/Blueprints/OnScrollEffectLayout/
    ========================================================================== */
 .cbp-so-scroller {
-    margin-top: 50px;
-    overflow: hidden;
+    margin-top: 6em;
 }
 
 .cbp-so-section {
@@ -392,7 +320,6 @@ section.color {
 }
 */
 
-/* Example media queries */
 @media screen and (max-width: 73.5em) {
     .cbp-so-scroller {
         font-size: 65%;
@@ -418,28 +345,30 @@ section.color {
     }
 }
 
-
 /* Section separators */
 #stamp {
-    background-color: #2072a7;
+    background-color: #e5f8e5;
 }
 #stamp path {
     fill: #FFFFFF;
     stroke: #FFFFFF; /* avoid gap in FF */
+}
+.ss-style-doublediagonal {
+    z-index: 1;
+    position: relative;
+    padding: 4em 0;
+    margin-bottom: -3em;
+}
+.ss-style-doublediagonal.color {
+    background-color: #e5f8e5;
+    padding: 4em 0;
+
 }
 .ss-style-doublediagonal::before,
 .ss-style-doublediagonal::after {
     position: absolute;
     content: '';
     pointer-events: none;
-}
-.ss-style-doublediagonal {
-    z-index: 1;
-    position: relative;
-    padding: 5em 0;
-}
-.ss-style-doublediagonal::before,
-.ss-style-doublediagonal::after {
     top: 0;
     left: -25%;
     z-index: -1;
@@ -451,9 +380,12 @@ section.color {
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
 }
+.ss-style-doublediagonal.color::after {
+    background-color: #e5f8e5;
+}
 .ss-style-doublediagonal::before {
     height: 50%;
-    background: #116094;
+    background: #b6edb6;
     -webkit-transform: rotate(-3deg);
     transform: rotate(-3deg);
     -webkit-transform-origin: 3% 0;
@@ -485,7 +417,7 @@ section.color {
     width: 2em;
     height: 2em;
     border-radius: 50%;
-    background: rgba(0,0,0,0.1);
+    background: #b6edb6;
     color: #fff;
     text-align: center;
     font-size: 8em;
@@ -499,84 +431,5 @@ section.color {
     }
     .icon {
         margin: 0 auto;
-    }
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-    *,
-    *:before,
-    *:after,
-    *:first-letter,
-    *:first-line {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links that are fragment identifiers,
-     * or use the `javascript:` pseudo protocol
-     */
-
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    /*
-     * Printing Tables:
-     * http://css-discuss.incutio.com/wiki/Printing_Tables
-     */
-
-    thead {
-        display: table-header-group;
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
     }
 }

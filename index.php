@@ -25,7 +25,8 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-        <!--
+        <?php
+        /*
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container">
                 <div class="navbar-header">
@@ -74,8 +75,15 @@
                 </div>
             </div>
         </nav>
-        -->
+        */
+        ?>
 
+        <header>
+            <h2>Bali Box</h2>
+            <p>Discover the natural beauty of the island of gods.</p>
+            <a class="btn btn-primary btn-subscribe">Subscribe</a>
+        </header>
+        
         <div class="wrapper">
         <?php
             if (!isset($_GET['p']))

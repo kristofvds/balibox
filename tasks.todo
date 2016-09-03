@@ -1,11 +1,11 @@
 Bali Box:
- ☐ Home page: choose 1 section separator, use waves for top or bottom
- ☐ Home page: add subscription button
- ☐ Home page: add animated checkout section
+ ☐ Home page: add animated checkout section: see http://localfood.com.ua
  ☐ Home page: add social icons
+ ☐ Home page: add icons to 'how it works' instead of numbers
  ☐ Home page: add logo
  ☐ Add checkout product information
  ☐ Improve copy (break up in tasks)
+ ☐ Optimize styles for all resolutions
  ☐ Add front-end form validation
  ☐ On navigation: keep other pages in memory (prevent AJAX load)
  ☐ Keep checkbox values on going back to shipping (change iso blur?)
@@ -72,8 +72,12 @@ EPP code: :heaHhC6VO
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ Home page design: http://tympanus.net/Blueprints/OnScrollEffectLayout/ @done (16-09-02 14:44) @project(Bali Box)
+ ✔ Home page: add subscription buttons @done (16-09-03 15:16) @project(Bali Box)
+ ✔ Home page: use different alternating section color: http://www.colorhexa.com/77dd77 @done (16-09-03 14:42) @project(Bali Box)
+ ✔ Home page: choose 1 section separator, use waves for top or bottom @done (16-09-03 14:42) @project(Bali Box)
+ ✔ Cleanup CSS @done (16-09-03 13:52) @project(Bali Box)
  ✔ Home page design: http://tympanus.net/Development/SectionSeparators/ @done (16-09-02 14:44) @project(Bali Box)
+ ✔ Home page design: http://tympanus.net/Blueprints/OnScrollEffectLayout/ @done (16-09-02 14:44) @project(Bali Box)
  ✔ Come back to checkout-payment page after PayPal cancelation (edit buttons) @done (16-08-29 18:11)
  ✔ Stay on same record when changing shipping details @done (16-08-29 17:05)
  ✔ Add back button throughout checkout process @done (16-08-29 16:53)
