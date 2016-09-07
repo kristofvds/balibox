@@ -7,7 +7,7 @@
 		"host": "159.253.0.29",
 		"username": "cgsowtqd",  // or null for anonymous login
 		"password": "leeuwBURG09",
-		"path": "/domains/appricorn.eu/public_html/balibox/",
+		"path": "/domains/balibox.in/public_html/",
 
 		"upload_on_save": true, // set *false* if you do not want to upload on save!
 

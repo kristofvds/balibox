@@ -1,5 +1,7 @@
 $(function() {
 
+    var $body = $('body');
+
     // Smooth scroll
     $(document).on('click', 'a[href*="#"]:not([href="#"])', function() {
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -15,16 +17,22 @@ $(function() {
     });
 
     // Navigation
-    $(document).on('click', '[data-target="checkout"]', function() {
-        var product = $(this).attr('data-product');
+    $(document).on('click', '.btn-subscribe', function() {
+        $('.checkout').addClass('checkout--active');
+    });
+    $(document).on('click', '.btn-checkout-back', function() {
+        $('.checkout').removeClass('checkout--active');
+    });
+    $(document).on('click', '.btn-back', function() {
+        window.history.back();
+    });
+    $(document).on('click', '.btn-checkout-buy', function() {
+        var product = $('[name="checkout-months"]:checked').val();
         localStorage.setItem('product', product);
+        $('.checkout').removeClass('checkout--active');
         $('.wrapper').load("checkout-shipping.html", function() {
             initCheckoutShipping();
         });
-    });
-
-    $(document).on('click', '.btn-back', function() {
-        window.history.back();
     });
 
     // Form submit
@@ -49,10 +57,21 @@ $(function() {
         return false;
     });
 
-    // Page init
+    $('[name="checkout-months"]').off("change").on("change", function() {
+        var $price = $('.price');
+        if (this.value === "1") {
+            $price.html('$30.00');
+        } else if (this.value === "3") {
+            $price.html('$84.00');
+        } else {
+            $price.html('$156.00');
+        }
+    });
 
+    // Page init
     initHome = function() {
         $.material.init();
+        $body.attr('data-page', 'home');
         $('.navbar').addClass('navbar-transparent navbar-absolute');
         $('html, body').animate({scrollTop: 0}, 500);
     };
@@ -69,6 +88,7 @@ $(function() {
 
     initCheckoutShipping = function() {
         initCheckout();
+        $body.attr('data-page', 'checkout-shipping');
         var getParams = getSearchParameters();
         if (getParams.p !== 'checkout-payment') {
             history.pushState(null, null, '?p=home');
@@ -79,6 +99,7 @@ $(function() {
 
     initCheckoutPayment = function() {
         initCheckout();
+        $body.attr('data-page', 'checkout-payment');
 
         var getParams = getSearchParameters();
         if (getParams.p !== 'checkout-payment') {
@@ -96,9 +117,9 @@ $(function() {
             default: paypalButtonInput.value = "XTV9YWYLX5SL8"; break;
         }
 
-        $("#input-paypalcustom")[0].value = localStorage.getItem('orderID');;
+        $("#input-paypalcustom")[0].value = localStorage.getItem('orderID');
 
-        $('[name="input-billing-address"').off("change").on("change", function() {
+        $('[name="input-billing-address"]').off("change").on("change", function() {
             var $billingAddressFields = $('#billing-address-fields');
             if (this.value === "same") {
                 $billingAddressFields.addClass("hidden");

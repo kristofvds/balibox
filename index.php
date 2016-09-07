@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
-    <body>
+    <body data-page="home">
         <?php
         /*
         <nav class="navbar navbar-transparent navbar-absolute">
@@ -82,6 +82,50 @@
             <h2>Bali Box</h2>
             <p>Discover the natural beauty of the island of gods.</p>
             <a class="btn btn-primary btn-subscribe">Subscribe</a>
+            <div class="checkout">
+                <div class="checkout__order">
+                    <div class="checkout__order-inner">
+                        <table class="checkout__summary">
+                            <thead>
+                                <tr>
+                                    <th>Your Order</th>
+                                    <th>Months</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr><th colspan="3">Total <span class="checkout__total price">$30.00</span></th></tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Bali Box subscription</td>
+                                    <td>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="checkout-months" id="checkout-months-1" value="1" checked> 1 month
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="checkout-months" id="checkout-months-3" value="3"> 3 months
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="checkout-months" id="checkout-months-6" value="6"> 6 months
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td class="price">$30.00</td>
+                                </tr>
+                            </tbody>
+                        </table><!-- /checkout__summary -->
+                        <button class="btn btn-link btn-checkout-back"><i class="fa fa-angle-left"></i> Continue Shopping</button>
+                        <button class="btn btn-primary btn-checkout-buy">Checkout</button>
+                        <button class="btn-checkout-close btn-checkout-back">&times;</button>
+                    </div><!-- /checkout__order-inner -->
+                </div><!-- /checkout__order -->
+            </div>
         </header>
         
         <div class="wrapper">
