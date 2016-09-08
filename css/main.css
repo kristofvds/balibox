@@ -80,17 +80,16 @@ body {
 /*
 .navbar {
     margin: 0;
-    background-color: #e91e63;
+    background-color: #67d967;
 }
 */
 
 header {
-    /*background-image: url("../img/banner.jpg");*/
-    /*height: 100vh;*/
     padding: .5em 13em 1.5em 3em;
     font-size: 2em;
 }
 
+/*
 header .btn-subscribe {
     position: absolute;
     top: 1.5em;
@@ -101,6 +100,7 @@ header .btn-subscribe {
 body[data-page="home"] header .btn-subscribe {
     display: block;
 }
+*/
 
 @media screen and (max-width: 64em) {
     header {
@@ -109,6 +109,10 @@ body[data-page="home"] header .btn-subscribe {
     header .btn-subscribe {
         position: static;
     }
+}
+
+.main {
+    padding: 0 6em;
 }
 
 section {
@@ -123,6 +127,29 @@ section .btn-subscribe {
     font-size: 2em;
 }
 
+#container-breadcrumbs {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+.checkout-step div {
+    padding-bottom: 1em;
+}
+.checkout-step.active div {
+    font-weight: 400;
+    border-bottom: 3px solid #666;
+}
+
+#container-checkout-summary p {
+    border: 3px solid #b6edb6;
+    background-color: #e5f8e5;
+    padding: 1em;
+    margin-bottom: 2em;
+    font-size: 1.5em;
+    color: #67d967;
+    font-weight: 400;
+}
+
 /* Form */
 .form-horizontal .form-group {
     margin: 0;
@@ -130,28 +157,46 @@ section .btn-subscribe {
 .form-control, .form-group .form-control {
     border: 1px solid #CCC;
     border-radius: 2px;
-    padding: 6px 12px;
+    padding: .5em .75em;
+    font-size: 1.25em;
+    height: auto;
+}
+.form-group .form-control::-moz-placeholder {
+    font-size: 1em;
+}
+.form-group .form-control:-ms-input-placeholder {
+    font-size: 1em;
+}
+.form-group .form-control::-webkit-input-placeholder {
+    font-size: 1em;
 }
 .form-group label.control-label {
-    font-size: .9em;
+    font-size: 1.25em;
     font-weight: 800;
+    margin: .5em 0;
 }
 .form-group.is-focused .form-control {
-    background-image: linear-gradient(#e91e63, #e91e63), linear-gradient(#D2D2D2, #D2D2D2)
+    background-image: linear-gradient(#67d967, #67d967), linear-gradient(#D2D2D2, #D2D2D2)
 }
 .form-group.is-focused label, .form-group.is-focused label.control-label {
-    color: #e91e63;
+    color: #67d967;
+}
+.checkbox label, .radio label, label {
+    font-size: 1.25em;
+}
+.form-group .checkbox label, .form-group .radio label, .form-group label {
+    font-size: 1.25em;
 }
 .checkbox input[type=checkbox]:checked + .checkbox-material .check {
-    background: #e91e63;
-    border-color: #e91e63;
+    background: #67d967;
+    border-color: #67d967;
     border-radius: 2px;
 }
 .radio input[type=radio]:checked ~ .check {
-    background-color: #e91e63;
+    background-color: #67d967;
 }
 .radio input[type=radio]:checked ~ .circle {
-    border-color: #e91e63;
+    border-color: #67d967;
 }
 .radio label {
     padding-left: 25px;
@@ -162,23 +207,36 @@ section .btn-subscribe {
 .form-horizontal .radio {
     margin-bottom: 0;
 }
+
+.form-navigation {
+    padding: 1em 0;
+}
+
+.btn {
+    font-size: 1.25em;
+}
 .btn.btn-primary,
 .btn.btn-primary:hover,
 .btn.btn-primary:focus,
 .btn.btn-primary:active,
-.btn.btn-primary:active:focus {
+.btn.btn-primary:active:focus,
+.btn.btn-primary:active:hover {
     background-color: #67d967;
 }
 .btn.btn-link,
 .btn.btn-link:hover,
 .btn.btn-link:focus,
 .btn.btn-link:active,
-.btn.btn-link:active:focus {
+.btn.btn-link:active:focus,
+.btn.btn-link:active:hover {
     background-color: transparent;
     box-shadow: none;
 }
 
-
+#recap-shipping-address, #checkout-result {
+    font-size: 1.5em;
+    line-height: 1.25em;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -460,6 +518,12 @@ section .btn-subscribe {
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.checkout.checkout--active {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
 }
 
 .checkout__button {

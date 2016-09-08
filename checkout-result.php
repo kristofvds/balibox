@@ -1,3 +1,20 @@
+<div class="main">
+
+    <div class="row" id="container-breadcrumbs">
+        <div class="checkout-step col-sm-4">
+            <div>1. Shipping information</div>
+        </div>
+        <div class="checkout-step col-sm-4">
+            <div>2. Billing information</div>
+        </div>
+        <div class="checkout-step col-sm-4 active">
+            <div>3. Result</div>
+        </div>
+    </div>
+
+	<div class="row">
+		<p id="checkout-result">
+
 <?php
 session_start();
 
@@ -5,17 +22,6 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 {
 	$tx = $_GET['tx'];
 	$pdt_token = 'h2Tp-3-5wEg2Ev2uWiNC-phKCYaNmAGP8xuyufWC6pxie3I5o9o0ewCSCbK';
-
-	$HTML = '
-		<div class="main">
-		    <div class="container">
-		        <div class="row">
-		        	<br>
-		            <p>Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at www.paypal.com to view details of this transaction.</p>
-		        </div>
-		    </div>
-		</div>
-	';
 
 	echo '<script>console.log("Building curl request");</script>';
 
@@ -117,7 +123,7 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 
 		// Database updated. Show PayPal response and success message
 		echo '<script>console.log(' . json_encode($response) . ');</script>';
-		echo $HTML;
+		echo 'Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at www.paypal.com to view details of this transaction.';
 		unset($_SESSION['orderID']);
 	}
 	else
@@ -155,15 +161,7 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 		mysqli_close($link);
 
 		// Database updated. Show cancelation message
-		echo '
-			<div class="main">
-			    <div class="container">
-			        <div class="row">
-			            <p>PayPal transaction failed or could not be verified. No worries. Please contact us and we will assist you.</p>
-			        </div>
-			    </div>
-			</div>
-		';
+		echo 'Your PayPal transaction failed or could not be verified by us. Don\'t worry, your money is not lost. Please contact us and we will assist you.';
 		// Error
 		echo '<script>console.log("' . $status . '");</script>';
 		echo '<script>console.log("' . $response . '");</script>';
@@ -171,3 +169,6 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 }
 
 ?>
+		</p>
+	</div>
+</div>

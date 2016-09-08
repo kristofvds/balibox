@@ -1,9 +1,16 @@
 $(function() {
 
-    var $body = $('body');
+    var $document = $(document),
+        $body = $('body'),
+        $checkout = $('.checkout'),
+        $wrapper = $('.wrapper');
+
+    if (localStorage.getItem('price') === null) {
+        localStorage.setItem('price', '$30.00');
+    }
 
     // Smooth scroll
-    $(document).on('click', 'a[href*="#"]:not([href="#"])', function() {
+    $document.on('click', 'a[href*="#"]:not([href="#"])', function() {
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
@@ -17,36 +24,36 @@ $(function() {
     });
 
     // Navigation
-    $(document).on('click', '.btn-subscribe', function() {
-        $('.checkout').addClass('checkout--active');
+    $document.on('click', '.btn-subscribe', function() {
+        $checkout.addClass('checkout--active');
     });
-    $(document).on('click', '.btn-checkout-back', function() {
-        $('.checkout').removeClass('checkout--active');
+    $document.on('click', '.btn-checkout-back', function() {
+        $checkout.removeClass('checkout--active');
     });
-    $(document).on('click', '.btn-back', function() {
+    $document.on('click', '.btn-back', function() {
         window.history.back();
     });
-    $(document).on('click', '.btn-checkout-buy', function() {
+    $document.on('click', '.btn-checkout-buy', function() {
         var product = $('[name="checkout-months"]:checked').val();
         localStorage.setItem('product', product);
-        $('.checkout').removeClass('checkout--active');
-        $('.wrapper').load("checkout-shipping.html", function() {
+        $checkout.removeClass('checkout--active');
+        $wrapper.load("checkout-shipping.html", function() {
             initCheckoutShipping();
         });
     });
 
     // Form submit
-    $(document).on("submit", "#form-checkout-shipping", function() {
+    $document.on("submit", "#form-checkout-shipping", function() {
         $.post("checkout-shipping.php", $("#form-checkout-shipping").serialize()).done(function(data) {
                 console.log(data);
                 localStorage.setItem('orderID', data.id);
-                $('.wrapper').load("checkout-payment.html", function() {
+                $wrapper.load("checkout-payment.html", function() {
                     initCheckoutPayment();
                 });
         });
         return false;
     });
-    $(document).on("click", "#btn-paypal", function() {
+    $document.on("click", "#btn-paypal", function() {
         $.post("checkout-payment.php", $("#form-checkout-payment").serialize()).done(function(data) {
                 console.log(data);
                 $('#form-paypal').submit();
@@ -58,14 +65,17 @@ $(function() {
     });
 
     $('[name="checkout-months"]').off("change").on("change", function() {
-        var $price = $('.price');
-        if (this.value === "1") {
-            $price.html('$30.00');
-        } else if (this.value === "3") {
-            $price.html('$84.00');
-        } else {
-            $price.html('$156.00');
+
+        var price = '$30.00';
+
+        if (this.value === "3") {
+            var price = '$84.00';
+        } else if (this.value === "6") {
+            var price = '$156.00';
         }
+
+        $('.price').html(price);
+        localStorage.setItem('price', price);
     });
 
     // Page init
@@ -81,8 +91,8 @@ $(function() {
         var product = localStorage.getItem('product');
         $('.navbar').removeClass('navbar-transparent navbar-absolute');
         $('#product-name').text(product);
+        $('.price').html(localStorage.getItem('price'));
         $('[name="product"]').val(product);
-        $('#container-product-description').removeClass('hidden');
         $('html, body').animate({scrollTop: 0}, 500);
     };
 
@@ -90,7 +100,7 @@ $(function() {
         initCheckout();
         $body.attr('data-page', 'checkout-shipping');
         var getParams = getSearchParameters();
-        if (getParams.p !== 'checkout-payment') {
+        if (getParams.p !== 'checkout-shipping') {
             history.pushState(null, null, '?p=home');
             history.pushState(null, null, '?p=checkout-shipping');
         }
@@ -100,7 +110,6 @@ $(function() {
     initCheckoutPayment = function() {
         initCheckout();
         $body.attr('data-page', 'checkout-payment');
-
         var getParams = getSearchParameters();
         if (getParams.p !== 'checkout-payment') {
             history.pushState(null, null, '?p=checkout-payment');
@@ -176,6 +185,7 @@ $(function() {
     // On hard reload, init page content
     function initGetParams() {
         var getParams = getSearchParameters();
+        $body.attr('data-page', getParams.p);
         switch (getParams.p) {
             case 'checkout-shipping': initCheckoutShipping(); break;
             case 'checkout-payment': initCheckoutPayment(); break;
@@ -187,19 +197,20 @@ $(function() {
     // On pop state, AJAX load page content and init
     $(window).on('popstate', function() {
         var getParams = getSearchParameters();
+        $body.attr('data-page', getParams.p);
         switch (getParams.p) {
             case 'home':
-                $('.wrapper').load("home.html", function() {
+                $wrapper.load("home.html", function() {
                     initHome();
                 });
                 break;
             case 'checkout-shipping':
-                $('.wrapper').load("checkout-shipping.html", function() {
+                $wrapper.load("checkout-shipping.html", function() {
                     initCheckoutShipping();
                 });
                 break;
             case 'checkout-payment':
-                $('.wrapper').load("checkout-payment.html", function() {
+                $wrapper.load("checkout-payment.html", function() {
                     initCheckoutPayment();
                 });
                 break;

@@ -1,80 +1,90 @@
 <div class="main">
-    <div class="container">
-        <div class="row hidden" id="container-product-description">
-            <div class="col-xs-12">
-                <br>
-                <p>Buying <span id="product-name"></span> month(s) subscription.</p>
-            </div>
+
+    <div class="row" id="container-checkout-summary">
+        <div class="col-xs-12">
+            <p>You are ordering a Bali Box subscription for <span id="product-name"></span> month(s) for a total price of <span class="price"></span>.</p>
         </div>
-        <form class="form-horizontal" id="form-checkout-shipping">
-            <input type="hidden" name="product">
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="input-shipping-email" class="control-label">Email</label>
-                    <input type="email" class="form-control" id="input-shipping-email" placeholder="Email" name="email" data-bound="true" data-binding="input-shipping-email">
-                </div>
-                <div class="form-group col-sm-3">
-                    <label for="input-shipping-firstname" class="control-label">First Name</label>
-                    <input type="text" class="form-control" id="input-shipping-firstname" placeholder="First Name" name="firstname" data-bound="true" data-binding="input-shipping-firstname">
-                </div>
-                <div class="form-group col-sm-3">
-                    <label for="input-shipping-lastname" class="control-label">Last Name</label>
-                    <input type="text" class="form-control" id="input-shipping-lastname" placeholder="Last Name" name="lastname" data-bound="true" data-binding="input-shipping-lastname">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="input-shipping-streetaddress" class="control-label">Street Address</label>
-                    <input type="text" class="form-control" id="input-shipping-streetaddress" placeholder="Street Address" name="streetaddress" data-bound="true" data-binding="input-shipping-streetaddress">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="input-shipping-addressextension" class="control-label">Apt/Floor/etc.</label>
-                    <input type="text" class="form-control" id="input-shipping-addressextension" placeholder="Apt/Floor/etc." name="addressextension" data-bound="true" data-binding="input-shipping-addressextension">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="input-shipping-city" class="control-label">City</label>
-                    <input type="text" class="form-control" id="input-shipping-city" placeholder="City" name="city" data-bound="true" data-binding="input-shipping-city">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="input-shipping-zipcode" class="control-label">Zip Code</label>
-                    <input type="text" class="form-control" id="input-shipping-zipcode" placeholder="Zip Code" name="zipcode" data-bound="true" data-binding="input-shipping-zipcode">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="input-shipping-country" class="control-label">Country</label>
-                    <input type="text" class="form-control" id="input-shipping-country" placeholder="Country" name="country" data-bound="true" data-binding="input-shipping-country">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="gift" id="input-shipping-gift" value="1" data-bound="true" data-binding="input-shipping-gift"> This is a gift
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="newsletter" id="input-shipping-newsletter" value="1" data-bound="true" data-binding="input-shipping-newsletter" checked> Yes, I would like to hear about special offers
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <a class="btn btn-default btn-back">Back</a>
-                </div>
-                <div class="col-sm-6">
-                    <button type="submit" class="btn btn-primary pull-right">Proceed to payment</button>
-                </div>
-            </div>
-        </form>
     </div>
 
+    <div class="row" id="container-breadcrumbs">
+        <div class="checkout-step col-sm-4 active">
+            <div>1. Shipping information</div>
+        </div>
+        <div class="checkout-step col-sm-4">
+            <div>2. Billing information</div>
+        </div>
+        <div class="checkout-step col-sm-4">
+            <div>3. Result</div>
+        </div>
+    </div>
+    
+    <form class="form-horizontal" id="form-checkout-shipping">
+        <input type="hidden" name="product">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="input-shipping-email" class="control-label">Email</label>
+                <input type="email" class="form-control" id="input-shipping-email" placeholder="Email" name="email" data-bound="true" data-binding="input-shipping-email">
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="input-shipping-firstname" class="control-label">First Name</label>
+                <input type="text" class="form-control" id="input-shipping-firstname" placeholder="First Name" name="firstname" data-bound="true" data-binding="input-shipping-firstname">
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="input-shipping-lastname" class="control-label">Last Name</label>
+                <input type="text" class="form-control" id="input-shipping-lastname" placeholder="Last Name" name="lastname" data-bound="true" data-binding="input-shipping-lastname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="input-shipping-streetaddress" class="control-label">Street Address</label>
+                <input type="text" class="form-control" id="input-shipping-streetaddress" placeholder="Street Address" name="streetaddress" data-bound="true" data-binding="input-shipping-streetaddress">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="input-shipping-addressextension" class="control-label">Apt/Floor/etc.</label>
+                <input type="text" class="form-control" id="input-shipping-addressextension" placeholder="Apt/Floor/etc." name="addressextension" data-bound="true" data-binding="input-shipping-addressextension">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="input-shipping-city" class="control-label">City</label>
+                <input type="text" class="form-control" id="input-shipping-city" placeholder="City" name="city" data-bound="true" data-binding="input-shipping-city">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="input-shipping-zipcode" class="control-label">Zip Code</label>
+                <input type="text" class="form-control" id="input-shipping-zipcode" placeholder="Zip Code" name="zipcode" data-bound="true" data-binding="input-shipping-zipcode">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="input-shipping-country" class="control-label">Country</label>
+                <input type="text" class="form-control" id="input-shipping-country" placeholder="Country" name="country" data-bound="true" data-binding="input-shipping-country">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="gift" id="input-shipping-gift" value="1" data-bound="true" data-binding="input-shipping-gift"> This is a gift
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="newsletter" id="input-shipping-newsletter" value="1" data-bound="true" data-binding="input-shipping-newsletter" checked> Yes, I would like to hear about special offers
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-navigation">
+            <div class="col-sm-6">
+                <a class="btn btn-default btn-back">Back</a>
+            </div>
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-primary pull-right">Proceed to payment</button>
+            </div>
+        </div>
+    </form>
 </div>

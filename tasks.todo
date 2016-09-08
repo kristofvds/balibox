@@ -1,11 +1,13 @@
 Bali Box:
- ☐ Up font size on checkout pages
- ☐ Add checkout product information
- ☐ Use real images
  ☐ Improve copy (break up in tasks)
+ ☐ Use real images
  ☐ Optimize styles for all resolutions
+ ☐ Init cbpScroller only on home page
  ☐ Setup live PayPal (see below)
  ☐ Home page: add social icons
+ ☐ Email to client: confirmation
+ ☐ Email to admin: new order
+ ☐ Email to client: box on its way (tracking)
  ☐ Home page: add icons to 'how it works' instead of numbers
  ☐ Home page: add logo
  ☐ Add front-end form validation
@@ -46,8 +48,8 @@ Create 3 buttons
   3: $84: FDTLMN8VL3JNQ
   6: $150: QPXDMB858CEE4
   Return address
-    http://appricorn.eu/balibox/?p=checkout-payment&status=payment-canceled
-    http://appricorn.eu/balibox/?p=checkout-result&done
+    http://balibox.in/?p=checkout-payment&status=payment-canceled
+    http://balibox.in/?p=checkout-result&done
 
 Uncitron:
  ☐ Wait for domain transfer
@@ -71,6 +73,8 @@ EPP code: :heaHhC6VO
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Up font size on checkout pages @done (16-09-08 12:09) @project(Bali Box)
+ ✔ Add checkout product information @done (16-09-08 12:09) @project(Bali Box)
  ✔ Hide subscribe button when not on home page @done (16-09-07 15:46) @project(Bali Box)
  ✔ Home page: add animated checkout section (http://localfood.com.ua, http://tympanus.net/Development/CheckoutConcepts/) @done (16-09-07 15:39) @project(Bali Box)
  ✔ Home page: add subscription buttons @done (16-09-03 15:16) @project(Bali Box)

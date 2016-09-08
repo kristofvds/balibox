@@ -81,7 +81,6 @@
         <header>
             <h2>Bali Box</h2>
             <p>Discover the natural beauty of the island of gods.</p>
-            <a class="btn btn-primary btn-subscribe">Subscribe</a>
             <div class="checkout">
                 <div class="checkout__order">
                     <div class="checkout__order-inner">
