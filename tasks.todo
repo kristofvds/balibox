@@ -1,12 +1,20 @@
 Bali Box:
+ ✔ Create email address info@balibox.in @done (16-09-14 15:43)
+ ☐ Add email address to Nadya's Gmail (sending and receiving)
+ ✔ Create newsletter subscription form @done (16-09-15 14:49)
+ ✔ Save newsletter subscription to own db @done (16-09-15 14:49)
+ ✔ Save newsletter subscription to MailChimp @done (16-09-15 14:49)
+ ☐ Link newsletter subscription during checkout to MailChimp
  ☐ Improve copy (break up in tasks)
  ☐ Use real images
  ☐ Optimize styles for all resolutions
+ ☐ Save newsletter optins to phpList software
  ☐ Init cbpScroller only on home page
- ☐ Setup live PayPal (see below)
- ☐ Home page: add social icons
+ ☐ Setup Google Analytics
  ☐ Email to client: confirmation
  ☐ Email to admin: new order
+ ☐ Setup live PayPal (see below)
+ ☐ Home page: add social icons
  ☐ Email to client: box on its way (tracking)
  ☐ Home page: add icons to 'how it works' instead of numbers
  ☐ Home page: add logo
@@ -37,6 +45,11 @@ Bali Box ideas:
  ☐ http://tympanus.net/Development/AnimatedCheckboxes/
  ☐ http://tympanus.net/Development/PageTransitions/
  ☐ http://tympanus.net/Development/FullscreenImageBlurEffect/
+
+info@balibox.in:
+pwd: kotik
+SMTP: mail.axc.nl / 465, SSL
+POP: mail.axc.nl / 995, SSL
 
 PayPal sandbox PDT token:
 h2Tp-3-5wEg2Ev2uWiNC-phKCYaNmAGP8xuyufWC6pxie3I5o9o0ewCSCbK

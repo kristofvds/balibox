@@ -123,7 +123,7 @@ section.color {
     background-color: #e5f8e5;
 }
 
-section .btn-subscribe {
+section .btn-primary {
     font-size: 2em;
 }
 
@@ -160,6 +160,10 @@ section .btn-subscribe {
     padding: .5em .75em;
     font-size: 1.25em;
     height: auto;
+    background-color: #FFF;
+}
+.cbp-so-scroller .form-control {
+    font-size: 2em;
 }
 .form-group .form-control::-moz-placeholder {
     font-size: 1em;
@@ -237,6 +241,15 @@ section .btn-subscribe {
     font-size: 1.5em;
     line-height: 1.25em;
 }
+
+#form-notify-me {
+    margin-top: 3em;
+}
+#notify-me-result {
+    margin-top: 3em;
+    color: #67d967;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

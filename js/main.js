@@ -43,6 +43,14 @@ $(function() {
     });
 
     // Form submit
+    $document.on("submit", "#form-notify-me", function() {
+        $.post("notify-me.php", $("#form-notify-me").serialize()).done(function(data) {
+                console.log(data);
+                $("#form-notify-me").addClass("hidden");
+                $("#notify-me-result").removeClass("hidden");
+        });
+        return false;
+    });
     $document.on("submit", "#form-checkout-shipping", function() {
         $.post("checkout-shipping.php", $("#form-checkout-shipping").serialize()).done(function(data) {
                 console.log(data);
