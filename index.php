@@ -164,6 +164,10 @@
             }
         ?>
         </div>
+        <div id="html-cache-home" class="hidden"></div>
+        <div id="html-cache-home-dev" class="hidden"></div>
+        <div id="html-cache-checkout-shipping" class="hidden"></div>
+        <div id="html-cache-checkout-payment" class="hidden"></div>
 
         <!-- JavaScript -->
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

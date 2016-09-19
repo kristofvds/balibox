@@ -1,30 +1,18 @@
 Bali Box:
- ✔ Create email address info@balibox.in @done (16-09-14 15:43)
- ☐ Add email address to Nadya's Gmail (sending and receiving)
- ✔ Create newsletter subscription form @done (16-09-15 14:49)
- ✔ Save newsletter subscription to own db @done (16-09-15 14:49)
- ✔ Save newsletter subscription to MailChimp @done (16-09-15 14:49)
- ☐ Link newsletter subscription during checkout to MailChimp
- ☐ Improve copy (break up in tasks)
+ ☐ Add error handling: eg. on POST
+ ☐ Add server side validation
+ ☐ Improve copy on all pages
  ☐ Use real images
- ☐ Optimize styles for all resolutions
- ☐ Save newsletter optins to phpList software
- ☐ Init cbpScroller only on home page
+ ☐ Improve design (colors, backgrounds, layout, fonts, separators)
+ ☐ Optimize responsiveness
+ ☐ Improve confirmation email template
  ☐ Setup Google Analytics
- ☐ Email to client: confirmation
- ☐ Email to admin: new order
+ ☐ Remove debug echos and console logs
  ☐ Setup live PayPal (see below)
  ☐ Home page: add social icons
  ☐ Email to client: box on its way (tracking)
  ☐ Home page: add icons to 'how it works' instead of numbers
  ☐ Home page: add logo
- ☐ Add front-end form validation
- ☐ On navigation: keep other pages in memory (prevent AJAX load)
- ☐ Keep checkbox values on going back to shipping (change iso blur?)
- ☐ Make sure navbar links work on all pages
- ☐ Show spinner in checkout buttons on navigation
- ☐ Add error handling: eg. on POST
- ☐ Add server side validation
  ☐ Implement PayPal IPN as a backup: http://www.geekality.net/?p=1420
  ☐ Modify index.php page inclusions via GET params to inclusions via routing (see bookmark)
 
@@ -46,11 +34,6 @@ Bali Box ideas:
  ☐ http://tympanus.net/Development/PageTransitions/
  ☐ http://tympanus.net/Development/FullscreenImageBlurEffect/
 
-info@balibox.in:
-pwd: kotik
-SMTP: mail.axc.nl / 465, SSL
-POP: mail.axc.nl / 995, SSL
-
 PayPal sandbox PDT token:
 h2Tp-3-5wEg2Ev2uWiNC-phKCYaNmAGP8xuyufWC6pxie3I5o9o0ewCSCbK
 
@@ -63,29 +46,22 @@ Create 3 buttons
   Return address
     http://balibox.in/?p=checkout-payment&status=payment-canceled
     http://balibox.in/?p=checkout-result&done
-
-Uncitron:
- ☐ Wait for domain transfer
- ☐ Copy files to domain folder
- ☐ Link wp-config.php to existing db
- ☐ Run db-search-replace
- ☐ Remove appricorn subdomains
-
-Domain Name: UNCITRON.COM
-Registrar: DOMAINCONTEXT, INC.
-Sponsoring Registrar IANA ID: 1111
-Whois Server: whois.domaincontext.com
-Referral URL: http://www.domaincontext.com
-Name Server: NS10.GUDZONSERVER.COM
-Name Server: NS9.GUDZONSERVER.COM
-Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
-Updated Date: 07-feb-2016
-Creation Date: 16-dec-2015
-Expiration Date: 16-dec-2016
-EPP code: :heaHhC6VO
-
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ On navigation: keep other pages in memory (prevent AJAX load) @done (16-09-19 16:55) @project(Bali Box)
+ ✔ Show spinner in checkout buttons on navigation @done (16-09-19 11:26) @project(Bali Box)
+ ✔ On hard load payment page: init form visibility @done (16-09-19 10:24) @project(Bali Box)
+ ✔ Keep checkbox values on going back to shipping (change iso blur?) @done (16-09-19 10:22) @project(Bali Box)
+ ✔ Add front-end form validation: html attributes only @done (16-09-19 09:40) @project(Bali Box)
+ ✔ Send order confirmation email to admin @done (16-09-16 17:01) @project(Bali Box)
+ ✔ Send order confirmation email to client @done (16-09-16 16:09) @project(Bali Box)
+ ✔ Init cbpScroller only on home page @done (16-09-15 16:23) @project(Bali Box)
+ ✔ Link newsletter subscription during checkout to MailChimp @done (16-09-15 16:15) @project(Bali Box)
+ ✔ Add email address to Nadya's Gmail (sending and receiving) @done (16-09-15 15:54) @project(Bali Box)
+ ✔ Save newsletter subscription to own db @done (16-09-15 14:49) @project(Bali Box)
+ ✔ Save newsletter subscription to MailChimp @done (16-09-15 14:49) @project(Bali Box)
+ ✔ Create newsletter subscription form @done (16-09-15 14:49) @project(Bali Box)
+ ✔ Create email address info@balibox.in @done (16-09-14 15:43) @project(Bali Box)
  ✔ Up font size on checkout pages @done (16-09-08 12:09) @project(Bali Box)
  ✔ Add checkout product information @done (16-09-08 12:09) @project(Bali Box)
  ✔ Hide subscribe button when not on home page @done (16-09-07 15:46) @project(Bali Box)

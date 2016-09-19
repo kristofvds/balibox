@@ -3,7 +3,14 @@ $(function() {
     var $document = $(document),
         $body = $('body'),
         $checkout = $('.checkout'),
-        $wrapper = $('.wrapper');
+        $wrapper = $('.wrapper'),
+        $loadingButton,
+        pages = {
+            "home": { isCached: false, content: '' },
+            "home-dev": { isCached: false, content: '' },
+            "checkout-shipping": { isCached: false, content: '' },
+            "checkout-payment": { isCached: false, content: '' }
+        };
 
     if (localStorage.getItem('price') === null) {
         localStorage.setItem('price', '$30.00');
@@ -31,73 +38,86 @@ $(function() {
         $checkout.removeClass('checkout--active');
     });
     $document.on('click', '.btn-back', function() {
+        $loadingButton = $(this);
+        $loadingButton.addClass('btn-loading');
         window.history.back();
     });
     $document.on('click', '.btn-checkout-buy', function() {
         var product = $('[name="checkout-months"]:checked').val();
         localStorage.setItem('product', product);
         $checkout.removeClass('checkout--active');
-        $wrapper.load("checkout-shipping.html", function() {
+        loadPage("checkout-shipping", function() {
             initCheckoutShipping();
         });
     });
 
     // Form submit
     $document.on("submit", "#form-notify-me", function() {
-        $.post("notify-me.php", $("#form-notify-me").serialize()).done(function(data) {
+        var $form = $(this);
+        $loadingButton = $(this).find('button[type="submit"]');
+        $loadingButton.addClass('btn-loading');
+        $.post("notify-me.php", $form.serialize()).done(function(data) {
                 console.log(data);
-                $("#form-notify-me").addClass("hidden");
+                stopLoadingAnimation();
+                $form.addClass("hidden");
                 $("#notify-me-result").removeClass("hidden");
         });
         return false;
     });
     $document.on("submit", "#form-checkout-shipping", function() {
+        $loadingButton = $(this).find('button[type="submit"]');
+        $loadingButton.addClass('btn-loading');
         $.post("checkout-shipping.php", $("#form-checkout-shipping").serialize()).done(function(data) {
                 console.log(data);
                 localStorage.setItem('orderID', data.id);
-                $wrapper.load("checkout-payment.html", function() {
+                loadPage("checkout-payment", function() {
                     initCheckoutPayment();
                 });
         });
         return false;
     });
     $document.on("click", "#btn-paypal", function() {
+        $loadingButton = $(this);
+        $loadingButton.addClass('btn-loading');
         $.post("checkout-payment.php", $("#form-checkout-payment").serialize()).done(function(data) {
                 console.log(data);
                 $('#form-paypal').submit();
         }).fail(function(data) {
+            stopLoadingAnimation();
             console.log(data.statusText);
             console.log(data.responseText);
         });
         return false;
     });
 
-    $('[name="checkout-months"]').off("change").on("change", function() {
-
-        var price = '$30.00';
-
-        if (this.value === "3") {
-            var price = '$84.00';
-        } else if (this.value === "6") {
-            var price = '$156.00';
-        }
-
-        $('.price').html(price);
-        localStorage.setItem('price', price);
-    });
-
     // Page init
     initHome = function() {
-        $.material.init();
-        $body.attr('data-page', 'home');
-        $('.navbar').addClass('navbar-transparent navbar-absolute');
+
         $('html, body').animate({scrollTop: 0}, 500);
+        $body.attr('data-page', 'home-dev'); // todo: home
+        if ($body.attr('data-src') !== "cache") {
+            $.material.init();
+        }
+
+        initCbpScroller();
+
+        $('[name="checkout-months"]').off("change").on("change", function() {
+            var price = '$30.00';
+            if (this.value === "3") {
+                var price = '$84.00';
+            } else if (this.value === "6") {
+                var price = '$156.00';
+            }
+            $('.price').html(price);
+            localStorage.setItem('price', price);
+        });
     };
 
     initCheckout = function() {
-        $.material.init();
+        if ($body.attr('data-src') !== "cache") {
+            $.material.init();
+        }
         var product = localStorage.getItem('product');
-        $('.navbar').removeClass('navbar-transparent navbar-absolute');
         $('#product-name').text(product);
         $('.price').html(localStorage.getItem('price'));
         $('[name="product"]').val(product);
@@ -109,7 +129,6 @@ $(function() {
         $body.attr('data-page', 'checkout-shipping');
         var getParams = getSearchParameters();
         if (getParams.p !== 'checkout-shipping') {
-            history.pushState(null, null, '?p=home');
             history.pushState(null, null, '?p=checkout-shipping');
         }
         initFieldBindings($("#form-checkout-shipping"));
@@ -143,7 +162,7 @@ $(function() {
             } else {
                 $billingAddressFields.removeClass("hidden");
             }
-        });
+        }).trigger("change");
 
         if (getParams.status === 'payment-canceled') {
             $('#container-payment-canceled').removeClass('hidden');
@@ -154,11 +173,15 @@ $(function() {
     initFieldBindings = function($container) {
 
         // Save values of changed fields
-        var $fields = $container.find('[data-bound="true"]');
+        var $fields = $container.find('input[data-bound="true"]');
         $fields.each(function() {
             var $field = $(this);
             $field.off("blur.binding").on("blur.binding", function() {
-                localStorage.setItem(this.id, this.value);
+                if (this.type === "checkbox") {
+                    localStorage.setItem(this.id, this.checked);
+                } else {
+                    localStorage.setItem(this.id, this.value);
+                }
             });
         });
 
@@ -167,10 +190,17 @@ $(function() {
         $boundElements.each(function() {
             var $element = $(this);
             var binding = $element.attr("data-binding");
-            if (this.nodeName.toLowerCase() === "input") {
-                $element.val(localStorage.getItem(binding));
-            } else {
-                $element.html(localStorage.getItem(binding));
+            var value = localStorage.getItem(binding);
+            if (value.length) {
+                if (this.nodeName.toLowerCase() === "input") {
+                    if (this.type === "checkbox") {
+                        this.checked = value === "true" ? true : false;
+                    } else {
+                        $element.val(value);
+                    }
+                } else {
+                    $element.html(value);
+                }
             }
         });
     };
@@ -189,42 +219,6 @@ $(function() {
         }
         return params;
     }
-
-    // On hard reload, init page content
-    function initGetParams() {
-        var getParams = getSearchParameters();
-        $body.attr('data-page', getParams.p);
-        switch (getParams.p) {
-            case 'checkout-shipping': initCheckoutShipping(); break;
-            case 'checkout-payment': initCheckoutPayment(); break;
-            case 'checkout-result': initCheckout(); break;
-        }
-    }
-    initGetParams();
-
-    // On pop state, AJAX load page content and init
-    $(window).on('popstate', function() {
-        var getParams = getSearchParameters();
-        $body.attr('data-page', getParams.p);
-        switch (getParams.p) {
-            case 'home':
-                $wrapper.load("home.html", function() {
-                    initHome();
-                });
-                break;
-            case 'checkout-shipping':
-                $wrapper.load("checkout-shipping.html", function() {
-                    initCheckoutShipping();
-                });
-                break;
-            case 'checkout-payment':
-                $wrapper.load("checkout-payment.html", function() {
-                    initCheckoutPayment();
-                });
-                break;
-        }
-    });
-
 
     /**
      * cbpScroller.js v1.0.0
@@ -370,6 +364,95 @@ $(function() {
 
     } )( window );
 
-    new cbpScroller( document.getElementById( 'cbp-so-scroller' ) );
+    function initCbpScroller() {
+        new cbpScroller( document.getElementById( 'cbp-so-scroller' ) );
+    }
+
+    // On hard reload, init page content
+    function initGetParams() {
+        var getParams = getSearchParameters();
+        $body.attr('data-page', getParams.p);
+        switch (getParams.p) {
+            case 'checkout-shipping': initCheckoutShipping(); break;
+            case 'checkout-payment': initCheckoutPayment(); break;
+            case 'checkout-result': initCheckout(); break;
+            default: initHome(); break;
+        }
+    }
+    initGetParams();
+
+    // On pop state, AJAX load page content and init
+    $(window).on('popstate', function() {
+        var getParams = getSearchParameters();
+        switch (getParams.p) {
+            case 'home':
+                loadPage("home", function() {
+                    initHome();
+                });
+                break;
+            case 'home-dev':
+                loadPage("home-dev", function() {
+                    initHome();
+                });
+                break;
+            case 'checkout-shipping':
+                loadPage("checkout-shipping", function() {
+                    initCheckoutShipping();
+                });
+                break;
+            case 'checkout-payment':
+                loadPage("checkout-payment", function() {
+                    initCheckoutPayment();
+                });
+                break;
+        }
+    });
+
+    function loadPage (page, callback) {
+
+        // Cache the current page
+        var currentPage = $('body').attr('data-page');
+        pages[currentPage] = {
+            isCached: true,
+            content: $wrapper.html()
+        }
+        console.log('Cached: ' + currentPage);
+
+        // Load new page
+        if (pages[page].isCached) {
+            // From cache
+            var html = pages[page].content;
+            if (typeof html === "undefined" || !html.length) {
+                loadPageFromServer(page, callback);
+            } else {
+                $wrapper.html(html);
+                $('body').attr('data-src', 'cache');
+                callback();
+                stopLoadingAnimation();
+                console.log('Loaded from cache: ' + page);
+            }
+        } else {
+            // From server
+            loadPageFromServer(page, callback);
+        }
+    }
+
+    function loadPageFromServer (page, callback) {
+        page += ".html";
+        $wrapper.load(page, function() {
+            $('body').attr('data-src', 'server');
+            callback();
+            stopLoadingAnimation();
+            console.log('Loaded from server: ' + page);
+        });
+    }
+
+    function stopLoadingAnimation () {
+        $('.btn-loading').removeClass('btn-loading');
+    }
+
+    // Preload images
+    var img = new Image();
+    img.src = "/img/ring.svg";
 
 });

@@ -236,6 +236,13 @@ section .btn-primary {
     background-color: transparent;
     box-shadow: none;
 }
+.btn.btn-loading {
+    background-image: url(/img/ring.svg);
+    background-repeat: no-repeat;
+    background-position: 90%;
+    background-size: 1.5em;
+    padding-right: 15%;
+}
 
 #recap-shipping-address, #checkout-result {
     font-size: 1.5em;

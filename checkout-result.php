@@ -115,15 +115,90 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 		if ($result) {
 			// Echo HTML
 			echo '<script>console.log("Record updated");</script>';
+
+			// Database updated. Show PayPal response and success message
+			echo '<script>console.log(' . json_encode($response) . ');</script>';
+			echo 'Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at www.paypal.com to view details of this transaction.';
+
+			/*
+				Send confirmation emails via SendGrid
+			
+				Transactional template usage:
+			 	https://github.com/sendgrid/sendgrid-php/blob/master/USE_CASES.md
+
+				API for sending mails:
+				https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html
+			*/
+			echo "Contacting SendGrid for confirmation email to client.\n";
+			require("sendgrid/sendgrid-php.php");
+			$sgApiKey = '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';
+
+			// Mail to client
+			$sgClientMailRequestBody = json_decode('{
+				"personalizations": [{
+					"to": [{
+						"email": "'.$_SESSION['clientEmail'].'"
+					}],
+					"substitutions": {
+						"-firstname-": "'.$_SESSION['clientFirstName'].'",
+						"-order-": "'.$_SESSION['orderID'].'",
+						"-product-": "'.$_SESSION['product'].'",
+						"-price-": "'.$_SESSION['price'].'"
+					}
+				}],
+				"from": {
+					"email": "info@balibox.in",
+					"name": "BaliBox Team"
+				},
+				"content": [{
+					"type": "text/html",
+					"value": "test-content-value"
+				}],
+				"template_id": "4616e895-95c9-48d1-be39-a0a84283b55f"
+			}');
+			$sgClientMail = new \SendGrid($sgApiKey);
+			try {
+			    $sgClientMailResponse = $sgClientMail->client->mail()->send()->post($sgClientMailRequestBody);
+			} catch (Exception $e) {
+			    echo 'Caught exception: ',  $e->getMessage(), "\n";
+			}
+			echo "SendGrid result:\n";
+			echo $sgClientMailResponse->statusCode() . "\n";
+			echo $sgClientMailResponse->headers() . "\n";
+			echo $sgClientMailResponse->body() . "\n";
+
+			// Mail to admin
+			$sgAdminMailRequestBody = json_decode('{
+				"personalizations": [{
+					"to": [{
+						"email": "info@balibox.in"
+					}],
+					"subject": "New order from ' . $_SESSION['clientFirstName'] . ' ' . $_SESSION['clientLastName'] . '"
+				}],
+				"from": {
+					"email": "info@balibox.in",
+					"name": "BaliBox Notification"
+				},
+				"content": [{
+					"type": "text/html",
+					"value": "First name: ' . $_SESSION['clientFirstName'] . '<br>Last name: ' . $_SESSION['clientLastName'] . '<br>Email: ' . $_SESSION['clientEmail'] . '<br>Subscription: ' . $_SESSION['product'] . ' month(s)"
+				}]
+			}');
+			$sgAdminMail = new \SendGrid($sgApiKey);
+			try {
+			    $sgAdminMailResponse = $sgAdminMail->client->mail()->send()->post($sgAdminMailRequestBody);
+			} catch (Exception $e) {
+			    echo 'Caught exception: ',  $e->getMessage(), "\n";
+			}
+			echo "SendGrid result:\n";
+			echo $sgAdminMailResponse->statusCode() . "\n";
+			echo $sgAdminMailResponse->headers() . "\n";
+			echo $sgAdminMailResponse->body() . "\n";
 		} else {
 			echo '<script>console.log('.mysqli_error($link).');</script>';
 		}
 
 		mysqli_close($link);
-
-		// Database updated. Show PayPal response and success message
-		echo '<script>console.log(' . json_encode($response) . ');</script>';
-		echo 'Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at www.paypal.com to view details of this transaction.';
 		unset($_SESSION['orderID']);
 	}
 	else

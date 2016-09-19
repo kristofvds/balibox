@@ -9,7 +9,7 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-/* Create new record */
+/* Add subscription to database */
 $query = "INSERT INTO subscriptions (
 				`id`,
 				`created_dt`,
@@ -40,7 +40,7 @@ if ($result) {
 	];
 
 	try {
-	    $apiKey = 'e3d3d4c561178697a7a8153cef2f39c2-us14';
+	    $apiKey = 'c0f6a7958046552795baf0bf790c4cb6-us14';
 	    $listId = '8c3bdd03db';
 
 	    $memberId = md5(strtolower($data['email']));
