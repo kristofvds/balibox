@@ -1,10 +1,9 @@
 Bali Box:
- ☐ Add error handling: eg. on POST
- ☐ Add server side validation
+ ☐ Add footer
  ☐ Improve copy on all pages
- ☐ Use real images
- ☐ Improve design (colors, backgrounds, layout, fonts, separators)
- ☐ Optimize responsiveness
+ ☐ Add server side validation
+ ☐ Add error handling: eg. on POST
+ ☐ Change first image on home page
  ☐ Improve confirmation email template
  ☐ Setup Google Analytics
  ☐ Remove debug echos and console logs
@@ -48,6 +47,11 @@ Create 3 buttons
     http://balibox.in/?p=checkout-result&done
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Finish design improvements on all pages @done (16-09-30 03:45) @project(Bali Box)
+ ✔ Modify steps in 'how does it work' section @done (16-09-30 03:45) @project(Bali Box)
+ ✔ Add subscription button below home page @done (16-09-30 03:45) @project(Bali Box)
+ ✔ Optimize responsiveness @done (16-09-30 03:45) @project(Bali Box)
+ ✔ Improve design: images, fonts, colors, separators, spacing @done (16-09-28 19:01) @project(Bali Box)
  ✔ On navigation: keep other pages in memory (prevent AJAX load) @done (16-09-19 16:55) @project(Bali Box)
  ✔ Show spinner in checkout buttons on navigation @done (16-09-19 11:26) @project(Bali Box)
  ✔ On hard load payment page: init form visibility @done (16-09-19 10:24) @project(Bali Box)

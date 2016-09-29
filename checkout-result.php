@@ -94,6 +94,13 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 		    exit();
 		}
 
+		if (is_numeric($response['custom'])) {
+			$orderID = $response['custom'];
+		} else {
+			// Fallback to session variable should the order ID coming from PayPal be faulty
+			$orderID = $_SESSION['orderID'];
+		}
+
 		/* update database record */
 		$query = "UPDATE orders
 			SET `status` = '3',
@@ -106,7 +113,7 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 				`payment_amount` = '" . $response['payment_gross'] . "',
 				`payment_status` = '" . $response['payment_status'] . "',
 				`payment_trx_id` = '" . $response['txn_id'] . "'
-			WHERE id = " . $response['custom'];
+			WHERE id = " . $orderID;
 
 		echo '<script>console.log("Executing query");</script>';
 
@@ -117,7 +124,7 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 			echo '<script>console.log("Record updated");</script>';
 
 			// Database updated. Show PayPal response and success message
-			echo '<script>console.log(' . json_encode($response) . ');</script>';
+			echo '<script>console.log("' . json_encode($response) . '");</script>';
 			echo 'Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at www.paypal.com to view details of this transaction.';
 
 			/*
@@ -129,7 +136,7 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 				API for sending mails:
 				https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html
 			*/
-			echo "Contacting SendGrid for confirmation email to client.\n";
+			echo '<script>console.log("Contacting SendGrid for confirmation email to client.");</script>';
 			require("sendgrid/sendgrid-php.php");
 			$sgApiKey = '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';
 
@@ -160,12 +167,9 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 			try {
 			    $sgClientMailResponse = $sgClientMail->client->mail()->send()->post($sgClientMailRequestBody);
 			} catch (Exception $e) {
-			    echo 'Caught exception: ',  $e->getMessage(), "\n";
+				echo '<script>console.log("Caught exception: ' . $e->getMessage() . '");</script>';
 			}
-			echo "SendGrid result:\n";
-			echo $sgClientMailResponse->statusCode() . "\n";
-			echo $sgClientMailResponse->headers() . "\n";
-			echo $sgClientMailResponse->body() . "\n";
+			echo '<script>console.log("SendGrid result: ' . $sgClientMailResponse->statusCode() . '");</script>';
 
 			// Mail to admin
 			$sgAdminMailRequestBody = json_decode('{
@@ -188,14 +192,11 @@ if (isset($_GET['done']) and isset($_GET['tx']))
 			try {
 			    $sgAdminMailResponse = $sgAdminMail->client->mail()->send()->post($sgAdminMailRequestBody);
 			} catch (Exception $e) {
-			    echo 'Caught exception: ',  $e->getMessage(), "\n";
+				echo '<script>console.log("Caught exception: ' . $e->getMessage() . '");</script>';
 			}
-			echo "SendGrid result:\n";
-			echo $sgAdminMailResponse->statusCode() . "\n";
-			echo $sgAdminMailResponse->headers() . "\n";
-			echo $sgAdminMailResponse->body() . "\n";
+			echo '<script>console.log("SendGrid result: ' . $sgClientMailResponse->statusCode() . '");</script>';
 		} else {
-			echo '<script>console.log('.mysqli_error($link).');</script>';
+			echo '<script>console.log("'.mysqli_error($link).'");</script>';
 		}
 
 		mysqli_close($link);

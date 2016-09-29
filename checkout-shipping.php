@@ -13,7 +13,6 @@ if (mysqli_connect_errno()) {
 if (isset($_SESSION['orderID']))
 {
 	/* Update existing record */
-	echo "Updating existing order " . $_SESSION['orderID'] . "\n";
 	$query = "UPDATE orders
 		SET `status` = '1',
 			`modified_dt` = NOW(),
@@ -33,7 +32,6 @@ if (isset($_SESSION['orderID']))
 else
 {
 	/* Create new record */
-	echo "Creating new order\n";
 	$query = "INSERT INTO orders
 		(`id`, `created_dt`, `modified_dt`, `email`, `firstname`, `lastname`, `shipping-streetaddress`, `shipping-addressextension`, `shipping-city`, `shipping-zipcode`, `shipping-country`, `gift`, `newsletter`, `product`, `status`)
 		VALUES (NULL,
@@ -82,7 +80,7 @@ if ($result) {
 		$result2 = mysqli_query($link, $query2);
 
 		if ($result2) {
-			echo "Subscription table updated, now contacting MailChimp.\n";
+			//Subscription table updated, now contacting MailChimp.
 
 			// https://stackoverflow.com/questions/30481979/adding-subscribers-to-a-list-using-mailchimps-api-v3/32956160#32956160
 			$data = [
@@ -124,9 +122,9 @@ if ($result) {
 			    curl_close($ch);
 
 			    if ($httpCode == "200") {
-			    	echo "MailChimp DB updated.\n";
+			    	//MailChimp DB updated
 			    } else {
-			    	echo "MailChimp DB could not be updated.\n";
+			    	//MailChimp DB could not be updated
 			    }
 			} catch (Exception $e) {
 			    echo 'Caught exception: ',  $e->getMessage(), "\n";

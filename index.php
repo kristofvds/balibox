@@ -9,13 +9,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Icons -->
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/ico/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/ico/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/ico/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/ico/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/ico/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/ico/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/ico/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="img/ico/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="img/ico/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="img/ico/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="img/ico/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="img/ico/favicon-128.png" sizes="128x128" />
 
-        <!--     Fonts and icons     -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <!-- Fonts and icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico|Raleway:400,700|Open+Sans+Condensed:700|Material+Icons">
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/normalize.css">
@@ -25,65 +34,15 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body data-page="home">
-        <?php
-        /*
-        <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/balibox">Bali Box</a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="navigation-example">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#about">
-                                About
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#howitworks">
-                                How it works
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#subscribe">
-                                Subscribe
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        */
-        ?>
 
         <header>
-            <h2>Bali Box</h2>
+            <h1>Bali Box</h1>
             <p>Discover the natural beauty of the island of gods.</p>
+            <div class="line"></div>
             <div class="checkout">
                 <div class="checkout__order">
                     <div class="checkout__order-inner">
+                        <h2>Bali Box</h2>
                         <table class="checkout__summary">
                             <thead>
                                 <tr>
@@ -119,7 +78,7 @@
                                 </tr>
                             </tbody>
                         </table><!-- /checkout__summary -->
-                        <button class="btn btn-link btn-checkout-back"><i class="fa fa-angle-left"></i> Continue Shopping</button>
+                        <button class="btn btn-link btn-checkout-back">&laquo; Cancel</button>
                         <button class="btn btn-primary btn-checkout-buy">Checkout</button>
                         <button class="btn-checkout-close btn-checkout-back">&times;</button>
                     </div><!-- /checkout__order-inner -->
